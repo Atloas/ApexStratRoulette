@@ -41,10 +41,22 @@ public class StratRoulette
 
         List<String> argsAsList = Arrays.asList(args);
 
-        Boolean flagWeapons = argsAsList.contains("weapons");
-        Boolean flagLegends = argsAsList.contains("legends");
-        Boolean flagExtra = argsAsList.contains("extra");
-        Boolean flagTeam = argsAsList.contains("team");
+        Boolean flagWeapons, flagLegends, flagExtra, flagTeam;
+
+        if(args.length == 0)
+        {
+            flagWeapons = true;
+            flagLegends = true;
+            flagExtra = true;
+            flagTeam = true;
+        }
+        else
+        {
+            flagWeapons = argsAsList.contains("weapons");
+            flagLegends = argsAsList.contains("legends");
+            flagExtra = argsAsList.contains("extra");
+            flagTeam = argsAsList.contains("team");
+        }
 
         int personCount = flagTeam ? 3 : 1;
         if(!(flagLegends || flagWeapons || flagExtra))
