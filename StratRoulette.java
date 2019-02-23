@@ -9,7 +9,7 @@ public class StratRoulette
 {
     public static void main(String[] args)
     {
-        String[] filenames = {"legends.txt", "weapons.txt", "extra.txt"};
+        String[] filenames = {"legends.txt", "weapons.txt", "strats.txt"};
         Map<String, Vector<String>> data = new TreeMap<String, Vector<String>>();
 
         for(String filename:filenames)
@@ -41,31 +41,31 @@ public class StratRoulette
 
         List<String> argsAsList = Arrays.asList(args);
 
-        Boolean flagWeapons, flagLegends, flagExtra, flagTeam;
+        Boolean flagWeapons, flagLegends, flagStrat, flagSolo;
 
         if(args.length == 0)
         {
             flagWeapons = true;
             flagLegends = true;
-            flagExtra = true;
-            flagTeam = true;
+            flagStrat = true;
+            flagSolo = false;
         }
         else
         {
             flagWeapons = argsAsList.contains("weapons");
             flagLegends = argsAsList.contains("legends");
-            flagExtra = argsAsList.contains("extra");
-            flagTeam = argsAsList.contains("team");
+            flagStrat = argsAsList.contains("strat");
+            flagSolo = argsAsList.contains("solo");
         }
 
-        int personCount = flagTeam ? 3 : 1;
-        if(!(flagLegends || flagWeapons || flagExtra))
+        int personCount = flagSolo ? 1 : 3;
+        if(!(flagLegends || flagWeapons || flagStrat))
         {
             System.out.println("ERROR: No rolls selected.");
             return;
         }
 
-        String[][] results = new String[personCount][3];
+        String[][] results = new String[personCount + 1][2];
 
         if(flagLegends)
         {
@@ -78,26 +78,25 @@ public class StratRoulette
         {
             for(String[] tab:results)
             {
-                String[] roll = Roll.many(data.get("weapons.txt"), 2);
+                String[] roll = Roll.manyUnique(data.get("weapons.txt"), 2);
                 tab[1] = roll[0] + ", " + roll[1];
             }
         }
 
-        if(flagExtra)
+        if(flagStrat)
         {
-            for(String[] tab:results)
-                tab[2] = Roll.one(data.get("extra.txt"));
+            results[results.length - 1][0] = Roll.one(data.get("strats.txt"));
         }
 
-        for(int i = 0; i < results.length; i++)
+        for(int i = 0; i < results.length - 1; i++)
         {
             if(results.length != 1)
                 System.out.println(i + 1 + ".");
             System.out.println("Legend: " + (flagLegends ? results[i][0] : "Any"));
             System.out.println("Weapons: " + (flagWeapons ? results[i][1] : "Any"));
-            System.out.println("Extra: " + (flagExtra ? results[i][2] : "None"));
-            if(i != results.length - 1)
+            if(i != results.length - 2)
                 System.out.println("");
         }
+        System.out.println("\nStrat: " + (flagStrat ? results[results.length - 1][0] : "Any"));
     }
 }
