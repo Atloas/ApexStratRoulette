@@ -5,3 +5,4 @@ Claustrophobia
 Package hunting
 Ship hunting
 Finishers
+Aggression
