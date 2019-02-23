@@ -1,22 +1,42 @@
 import java.io.*;
-import java.util.Vector<E>;
+import java.util.Vector;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Main
 {
     public static void main(String[] args)
     {
-        File legendsFile = new File("legends.txt");
-        File weaponsFile = new File("weapons.txt");
-        BufferedReader legendsReader = new BufferedReader(legendsFile);
-        BufferedReader weaponsReader = new BufferedReader(weaponsfile);
-        Vector<String> legends = new Vector<String>();
-        Vector<String> weapons = new Vector<String>();
-        String str;
+        String[] filenames = {"legends.txt", "weapons.txt", "extra.txt"};
+        Map<String, Vector<String>> data = new TreeMap<String, Vector<String>>();
+        
+        for(String filename:filenames)
+        {
+            try
+            {
+                File file = new File(filename);
+                String str;
+                BufferedReader reader = new BufferedReader(new FileReader(file));
 
-        //Populating lists
-        while(str = legendsReader.readLine() != null)
-            legends.add(String(str));
-        while(str = weaponsReader.readLine())
-            weapons.add(String(str));
+                data.put(filename, new Vector<String>());
+                
+                while((str = reader.readLine()) != null)
+                    data.get(filename).add(str);
+                
+                reader.close();
+            }
+            catch(FileNotFoundException e)
+            {
+                System.out.println(e);
+                return;
+            }
+            catch(IOException e)
+            {
+                System.out.println(e);
+                return;
+            }
+        }
+
+        
     }
 }
