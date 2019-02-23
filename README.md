@@ -2,7 +2,7 @@
 
 A simple command line program for rolling strats in Apex Legends.
 
-The program requires Java 11 to run (though I'll probably go to an earlier version at some point).
+The program requires Java 8 to run.
 
 To run it, navigate to the folder containing it and type:
 
