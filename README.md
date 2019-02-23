@@ -14,20 +14,20 @@ legends
 
 weapons
 
-extra - extra strategies, like hunting packages.
+strats
 
-team - will roll for all 3 people.
+solo - will roll for just one player.
 
 
 For example:
 
-    java StratRoulette team weapons extra
+    java StratRoulette weapons strats
 
-This will tell the entire team what weapons and extra strategies to use, but won't restrict your legend choice.
+This will tell the entire team what weapons and strats strategies to use, but won't restrict your legend choice.
 
 An empty options string will result in a full roll:
 
     java StratRoulette
 
 
-The legend, weapon, and extra lists are simply expandable: you just need to add whatever you want to the text files, one item per line.
+The legend, weapon, and strats lists are easily expandable: you just need to add whatever you want to the text files, one item per line.
