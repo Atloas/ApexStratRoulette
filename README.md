@@ -14,4 +14,5 @@ team - will roll for all 3 people.
 For example:
     java StratRoulette team weapons extra
 This will tell the entire team what weapons and extra strategies to use, but won't restrict your legend choice.
-An empty options string will result in a full roll.
+An empty options string will result in a full roll:
+    java StratRoulette
