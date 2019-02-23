@@ -28,3 +28,6 @@ This will tell the entire team what weapons and extra strategies to use, but won
 An empty options string will result in a full roll:
 
     java StratRoulette
+
+
+The legend, weapon, and extra lists are simply expandable: you just need to add whatever you want to the text files, one item per line.
