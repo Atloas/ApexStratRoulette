@@ -6,28 +6,32 @@ The program requires Java 8 to run.
 
 To run it, navigate to the folder containing it and type:
 
-    java StratRoulette options
+    java StratRoulette
 
-where options is a space separated list of things the program is supposed to roll:
+This will roll the Legends, weapons, and a strat for a team of 3. This default behaviour can be modified by addding a list of space separated options to the end of the command. Those options are:
 
-legends
+- nolegends
 
-weapons
+- noweapons
 
-strats
+- nostrat
 
-solo - will roll for just one player.
+- solo
 
+- duo
+
+- quad
+
+- ammo - Will roll ammo types in stead of specific weapons.
+
+- types - Will roll weapon types in stead of specific weapons.
 
 For example:
 
-    java StratRoulette weapons strats
+    java StratRoulette nostrat ammo
 
-This will tell the entire team what weapons and strats strategies to use, but won't restrict your legend choice.
+This will tell a team of 3 which Legends to use, and what ammo types should their guns be, but won't roll a strat.
 
-An empty options string will result in a full roll:
+The pools of items the program pulls from can be easily expanded by modifying corresponding text files.
 
-    java StratRoulette
-
-
-The legend, weapon, and strats lists are easily expandable: you just need to add whatever you want to the text files, one item per line.
+Make sure to only use this program if the entire team aggrees upon it, do not do it with randoms.
