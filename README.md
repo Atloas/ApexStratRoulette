@@ -10,7 +10,7 @@ The program requires Java 8 to run.
 
 To run it, navigate to the folder containing it and type:
 
-    `java StratRoulette`
+`java StratRoulette`
 
 This will roll the Legends, weapons, and a strat for a team of 3. This default behaviour can be modified by addding a list of space separated options to the end of the command. Those options are:
 
@@ -32,7 +32,7 @@ This will roll the Legends, weapons, and a strat for a team of 3. This default b
 
 For example:
 
-    `java StratRoulette nostrat ammo`
+`java StratRoulette nostrat ammo`
 
 This will tell a team of 3 which Legends to use, and what ammo types should their guns be, but won't roll a strat.
 
