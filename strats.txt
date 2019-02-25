@@ -5,3 +5,4 @@ Ship hunting
 Finishers
 Aggression
 Phalanx
+Switch if empty
