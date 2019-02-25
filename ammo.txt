@@ -1,0 +1,4 @@
+Light
+Heavy
+Energy
+Shotgun

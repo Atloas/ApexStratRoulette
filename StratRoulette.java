@@ -1,5 +1,8 @@
 import java.io.*;
 import java.util.Vector;
+
+import javax.lang.model.util.ElementScanner6;
+
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.List;
@@ -7,9 +10,10 @@ import java.util.Arrays;
 
 public class StratRoulette
 {
+    enum weaponRollMode {AMMO, TYPES, WEAPONS};
     public static void main(String[] args)
     {
-        String[] filenames = {"legends.txt", "weapons.txt", "strats.txt"};
+        String[] filenames = {"legends.txt", "weapons.txt", "strats.txt", "weaponTypes.txt", "ammo.txt"};
         Map<String, Vector<String>> data = new TreeMap<String, Vector<String>>();
 
         for(String filename:filenames)
@@ -41,24 +45,33 @@ public class StratRoulette
 
         List<String> argsAsList = Arrays.asList(args);
 
-        Boolean flagWeapons, flagLegends, flagStrat, flagSolo;
+        Boolean flagWeapons = true, flagLegends = true, flagStrat = true;
+        int personCount = 3;
+        weaponRollMode weaponRoll = weaponRollMode.WEAPONS;
 
-        if(args.length == 0)
+        //ARguments modify the default behaviour
+        if(args.length != 0)
         {
-            flagWeapons = true;
-            flagLegends = true;
-            flagStrat = true;
-            flagSolo = false;
-        }
-        else
-        {
-            flagWeapons = argsAsList.contains("weapons");
-            flagLegends = argsAsList.contains("legends");
-            flagStrat = argsAsList.contains("strat");
-            flagSolo = argsAsList.contains("solo");
+            flagWeapons = !argsAsList.contains("noweapons");
+            flagLegends = !argsAsList.contains("nolegends");
+            flagStrat = !argsAsList.contains("nostrat");
+            
+            if(argsAsList.contains("solo"))
+                personCount = 1;
+            else if(argsAsList.contains("duo"))
+                personCount = 2;
+            else if(argsAsList.contains("quad"))
+                personCount = 4;
+
+            if(flagWeapons)
+            {
+                if(argsAsList.contains("ammo"))
+                    weaponRoll = weaponRollMode.AMMO;
+                else if(argsAsList.contains("types"))
+                    weaponRoll = weaponRollMode.TYPES;
+            }
         }
 
-        int personCount = flagSolo ? 1 : 3;
         if(!(flagLegends || flagWeapons || flagStrat))
         {
             System.out.println("ERROR: No rolls selected.");
@@ -78,7 +91,13 @@ public class StratRoulette
         {
             for(String[] tab:results)
             {
-                String[] roll = Roll.manyUnique(data.get("weapons.txt"), 2);
+                String[] roll;
+                if(weaponRollMode.valueOf("WEAPONS") == weaponRoll)
+                    roll = Roll.manyUnique(data.get("weapons.txt"), 2);
+                else if(weaponRollMode.valueOf("AMMO") == weaponRoll)
+                    roll = Roll.many(data.get("ammo.txt"), 2);
+                else
+                    roll = Roll.many(data.get("weaponTypes.txt"), 2);
                 tab[1] = roll[0] + ", " + roll[1];
             }
         }

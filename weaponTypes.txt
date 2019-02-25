@@ -1,0 +1,6 @@
+Shotgun
+Pistol
+AR
+Sniper
+SMG
+LMG
