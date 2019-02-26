@@ -9,7 +9,7 @@ Peacekeeper
 EVA-8
 Spitfire
 Devotion
-Havok
+Havoc
 R-301
 Hemlok
 Triple Take

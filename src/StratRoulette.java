@@ -25,40 +25,6 @@ public class StratRoulette extends Application
         root.setPadding(new Insets(25, 25, 25, 25));
         root.setGridLinesVisible(false);
 
-        // Text sceneTitle = new Text("Welcome!");
-        // sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        // root.add(sceneTitle, 0, 0, 2, 1);
-
-        // Label userName = new Label("Username:");
-        // root.add(userName, 0, 1);
-
-        // Label password = new Label("Password:");
-        // root.add(password, 0, 2);
-
-        // TextField userNameField = new TextField();
-        // root.add(userNameField, 1, 1);
-
-        // PasswordField passwordField = new PasswordField();
-        // root.add(passwordField, 1, 2);
-
-        // final Text actionTarget = new Text();
-        // root.add(actionTarget, 1, 6);
-
-        // Button btn = new Button("Sign in");
-        // HBox hbBtn = new HBox(10);
-        // hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
-        // hbBtn.getChildren().add(btn);
-        // btn.setOnAction(new EventHandler<ActionEvent>()
-        // {
-        //     @Override
-        //     public void handle(ActionEvent e)
-        //     {
-        //         actionTarget.setFill(Color.FIREBRICK);
-        //         actionTarget.setText("Sign in button pressed!");
-        //     }
-        // });
-        // root.add(hbBtn, 1, 4);
-
         //TEAM SIZE CHOICE
         Text teamSizeTitle = new Text("Team size:");
 
