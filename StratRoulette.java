@@ -23,6 +23,7 @@ public class StratRoulette extends Application
         root.setVgap(10);
         root.setHgap(10);
         root.setPadding(new Insets(25, 25, 25, 25));
+        root.setGridLinesVisible(false);
 
         // Text sceneTitle = new Text("Welcome!");
         // sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
