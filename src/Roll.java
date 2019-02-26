@@ -8,6 +8,12 @@ import java.util.Arrays;
 
 public class Roll
 {
+    /**
+     * Randomly selects a single item from the passed Vector of Strings.
+     * 
+     * @param arg Vector of Strings from which an item will be chosen.
+     * @return Chosen String.
+     */
     public static String rollOne(Vector<String> arg)
     {
         Random random = new Random();
@@ -15,6 +21,16 @@ public class Roll
         return arg.get(index);
     }
 
+    /**
+     * Randomly selects count items from the passed Vector of Strings, avoiding duplicates.
+     * <p>
+     * The method creates a clone of the passed Vector, then removes from it every item selected, so that each item can only be chosen once.
+     * Passing a higher count than the size of the Vector will set count to the size of the Vector.
+     * 
+     * @param arg Vector of Strings from which items will be chosen.
+     * @param count Number of items to choose.
+     * @return String[] containing chosen items.
+     */
     public static String[] rollManyUnique(Vector<String> arg, int count)
     {
         Random random = new Random();
@@ -36,6 +52,15 @@ public class Roll
         return result;
     }
 
+    /**
+     * Randomly selects count items from the passed Vector of Strings, allows duplicates.
+     * <p>
+     * Passing a higher count than the size of the Vector will set count to the size of the Vector.
+     * 
+     * @param arg Vector of Strings from which items will be chosen.
+     * @param count Number of items to choose.
+     * @return String[] containing chosen items.
+     */
     public static String[] rollMany(Vector<String> arg, int count)
     {
         Random random = new Random();
@@ -51,7 +76,17 @@ public class Roll
         return result;
     }
 
-    //args = {personCount, legends, weapons, strat}
+    /**
+     * Rolls strats.
+     * <p>
+     * Method creates a TreeMap of items contained in several text files from the pools directory, 
+     * then rolls strats according to the passed argument.
+     * 
+     * @param args String[], contains flags that tell the method how to roll. The format is {team size, legends, weapons, strats},
+     *             where each item in the array is a flag related to that respective roll.
+     * @return A formatted String, ready to be printed, containing the results of the rolls.
+     *         In case of error or an IOException, the message will be returned in stead.
+     */
     public static String roll(String[] args)
     {
         String dirPath = "../pools/";
