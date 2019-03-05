@@ -13,17 +13,20 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
 public class StratRoulette extends Application
 {
     @Override
     public void start(Stage primaryStage)
     {
-        GridPane root = new GridPane();
-        root.setAlignment(Pos.CENTER);
-        root.setVgap(10);
-        root.setHgap(10);
-        root.setPadding(new Insets(25, 25, 25, 25));
-        root.setGridLinesVisible(false);
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        grid.setVgap(10);
+        grid.setHgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+        //grid.setGridLinesVisible(true);
 
         //TEAM SIZE CHOICE
         Text teamSizeTitle = new Text("Team size:");
@@ -61,17 +64,20 @@ public class StratRoulette extends Application
 
         //RESULTS TEXT
         final Text resultsText = new Text();
+        resultsText.setFill(Color.WHITE);
         VBox resultsTextVBox = new VBox(10);
         resultsTextVBox.getChildren().add(resultsText);
         resultsTextVBox.setMinSize(220, 300);
-        resultsTextVBox.setPadding(new Insets(0, 10, 0, 10));
+        //resultsTextVBox.setPadding(new Insets(10, 10, 10, 10));
+        resultsTextVBox.setId("resultsBox");
 
         //HANDLE ROLL EVENT
         rollButton.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
-            public void handle(ActionEvent e)
+            public void handle(ActionEvent event)
             {
+                String results;
                 String[] args = {"3", "legends", "weapons", "strat"};
                 args[0] = (String)teamSizeChoiceBox.getValue();
                 args[1] = legendsChoiceBox.getValue().equals("Yes") ? "legends" : "nolegends";
@@ -89,27 +95,40 @@ public class StratRoulette extends Application
 
                 args[3] = stratsChoiceBox.getValue().equals("Yes") ? "strat" : "nostrat";
 
-                String results = Roll.roll(args);
+                try
+                {
+                    results = Roll.roll(args);
+                }
+                catch(FileNotFoundException e)
+                {
+                    results = e.getMessage();
+                }
+                catch(IOException e)
+                {
+                    results = e.getMessage();
+                }
                 resultsText.setText(results);
             }
         });
 
         //ADD EVERYTHING TO ROOT
-        root.add(teamSizeTitle, 0, 1);
-        root.add(teamSizeChoiceBox, 1, 1);
-        root.add(legendsTitle, 0, 2);
-        root.add(legendsChoiceBox, 1, 2);
-        root.add(weaponsTitle, 0, 3);
-        root.add(weaponsChoiceBox, 1, 3);
-        root.add(stratTitle, 0, 4);
-        root.add(stratsChoiceBox, 1, 4);
-        root.add(rollButtonHBox, 0, 5, 2, 1);
-        root.add(resultsTextVBox, 2, 0, 1, 5);
+        grid.add(teamSizeTitle, 0, 1);
+        grid.add(teamSizeChoiceBox, 1, 1);
+        grid.add(legendsTitle, 0, 2);
+        grid.add(legendsChoiceBox, 1, 2);
+        grid.add(weaponsTitle, 0, 3);
+        grid.add(weaponsChoiceBox, 1, 3);
+        grid.add(stratTitle, 0, 4);
+        grid.add(stratsChoiceBox, 1, 4);
+        grid.add(rollButtonHBox, 0, 5, 2, 1);
+        grid.add(resultsTextVBox, 2, 0, 1, 7);
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(grid);
+        scene.getStylesheets().add("style.css");
         
         primaryStage.setTitle("Apex Legends Strat Roulette");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

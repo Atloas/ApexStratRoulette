@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'TT Squares Condensed Bold';
+    src: url('resources/ttsquarescondensedbold.ttf') format('truetype');
+}
+
+
+.root{
+    -fx-base: rgb(232, 218, 199);
+    -fx-font-family: "TT Squares Condensed Bold";
+    -fx-font-size: 12px;
+}
+
+.choice-box {
+    -fx-min-width: 100px;
+    -fx-border-radius: 20px;
+}
+
+#resultsBox {
+    -fx-background-color: rgb(33, 32, 43);
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+    -fx-padding: 10px;
+}

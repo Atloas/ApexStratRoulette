@@ -1,20 +1,18 @@
 import java.io.*;
 import java.util.Random;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.List;
-import java.util.Arrays;
 
 public class Roll
 {
     /**
-     * Randomly selects a single item from the passed Vector of Strings.
+     * Randomly selects a single item from the passed ArrayList of Strings.
      * 
-     * @param arg Vector of Strings from which an item will be chosen.
+     * @param arg ArrayList of Strings from which an item will be chosen.
      * @return Chosen String.
      */
-    public static String rollOne(Vector<String> arg)
+    public static String rollOne(ArrayList<String> arg)
     {
         Random random = new Random();
         int index = random.nextInt(arg.size());
@@ -22,46 +20,46 @@ public class Roll
     }
 
     /**
-     * Randomly selects count items from the passed Vector of Strings, avoiding duplicates.
+     * Randomly selects count items from the passed ArrayList of Strings, avoiding duplicates.
      * <p>
-     * The method creates a clone of the passed Vector, then removes from it every item selected, so that each item can only be chosen once.
-     * Passing a higher count than the size of the Vector will set count to the size of the Vector.
+     * The method creates a clone of the passed ArrayList, then removes from it every item selected, so that each item can only be chosen once.
+     * Passing a higher count than the size of the ArrayList will set count to the size of the ArrayList.
      * 
-     * @param arg Vector of Strings from which items will be chosen.
+     * @param arg ArrayList of Strings from which items will be chosen.
      * @param count Number of items to choose.
      * @return String[] containing chosen items.
      */
-    public static String[] rollManyUnique(Vector<String> arg, int count)
+    public static String[] rollManyUnique(ArrayList<String> arg, int count)
     {
         Random random = new Random();
-        Vector<String> copy = (Vector<String>)arg.clone();
         String[] result = new String[count];
         int index;
 
-        //In case we try to roll more times than there are items in the vector
-        if(count > copy.size())
-            count = copy.size();
+        //In case we try to roll more times than there are items in the ArrayList
+        if(count > arg.size())
+            count = arg.size();
 
         for(int i = 0; i < count; i++)
         {
-            index = random.nextInt(copy.size());
-            result[i] = copy.get(index);
-            copy.remove(index);
+            index = random.nextInt(arg.size() - 1);
+            result[i] = arg.get(index);
+            arg.remove(index);
+            arg.add(result[i]);
         }
 
         return result;
     }
 
     /**
-     * Randomly selects count items from the passed Vector of Strings, allows duplicates.
+     * Randomly selects count items from the passed ArrayList of Strings, allows duplicates.
      * <p>
-     * Passing a higher count than the size of the Vector will set count to the size of the Vector.
+     * Passing a higher count than the size of the ArrayList will set count to the size of the ArrayList.
      * 
-     * @param arg Vector of Strings from which items will be chosen.
+     * @param arg ArrayList of Strings from which items will be chosen.
      * @param count Number of items to choose.
      * @return String[] containing chosen items.
      */
-    public static String[] rollMany(Vector<String> arg, int count)
+    public static String[] rollMany(ArrayList<String> arg, int count)
     {
         Random random = new Random();
         String[] result = new String[count];
@@ -86,12 +84,14 @@ public class Roll
      *             where each item in the array is a flag related to that respective roll.
      * @return A formatted String, ready to be printed, containing the results of the rolls.
      *         In case of error or an IOException, the message will be returned in stead.
+     * @throws FileNotFoundException - if one of the required files is missing.
+     * @throws IOException - if an IO exception occurs.
      */
-    public static String roll(String[] args)
+    public static String roll(String[] args) throws FileNotFoundException, IOException
     {
-        String dirPath = "../pools/";
+        String dirPath = "resources/";
         String[] fileNames = {"legends.txt", "weapons.txt", "strats.txt", "weaponTypes.txt", "ammo.txt"};
-        Map<String, Vector<String>> data = new TreeMap<String, Vector<String>>();
+        Map<String, ArrayList<String>> data = new TreeMap<String, ArrayList<String>>();
         StringBuilder resultBuilder = new StringBuilder();
 
         for(String fileName:fileNames)
@@ -102,7 +102,7 @@ public class Roll
                 String str;
                 BufferedReader reader = new BufferedReader(new FileReader(file));
 
-                data.put(fileName, new Vector<String>());
+                data.put(fileName, new ArrayList<String>());
                 
                 while((str = reader.readLine()) != null)
                     data.get(fileName).add(str);
@@ -111,11 +111,11 @@ public class Roll
             }
             catch(FileNotFoundException e)
             {
-                return e.getMessage();
+                throw e;
             }
             catch(IOException e)
             {
-                return e.getMessage();
+                throw e;
             }
         }
 
