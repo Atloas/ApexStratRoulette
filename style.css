@@ -3,21 +3,54 @@
     src: url('resources/ttsquarescondensedbold.ttf') format('truetype');
 }
 
-
+/* 
+    bg color: rgb(232, 218, 199)
+    results bg color: rgb(33, 32, 43)
+*/
 .root{
     -fx-base: rgb(232, 218, 199);
     -fx-font-family: "TT Squares Condensed Bold";
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
 }
 
 .choice-box {
-    -fx-min-width: 100px;
-    -fx-border-radius: 20px;
+    -fx-min-width: 110px;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-background-color: rgb(33, 32, 43);
+}
+
+.choice-box > .label {
+    -fx-text-fill: white;
+}
+
+.choice-box .context-menu {
+    -fx-min-width: 110px;
+    -fx-background-color: rgb(33, 32, 43);
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: rgb(63, 62, 73);
+}
+
+.choice-box .menu-item > .label {
+    -fx-text-fill: white;
 }
 
 #resultsBox {
     -fx-background-color: rgb(33, 32, 43);
     -fx-border-color: white;
-    -fx-border-width: 1px;
+    -fx-border-width: 2px;
     -fx-padding: 10px;
+}
+
+.button {
+    -fx-background-color: rgb(33, 32, 43);
+    -fx-text-fill: white;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+}
+
+.button:hover {
+    -fx-background-color: rgb(63, 62, 73);
 }

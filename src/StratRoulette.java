@@ -64,11 +64,9 @@ public class StratRoulette extends Application
 
         //RESULTS TEXT
         final Text resultsText = new Text();
-        resultsText.setFill(Color.WHITE);
         VBox resultsTextVBox = new VBox(10);
         resultsTextVBox.getChildren().add(resultsText);
-        resultsTextVBox.setMinSize(220, 300);
-        //resultsTextVBox.setPadding(new Insets(10, 10, 10, 10));
+        resultsTextVBox.setMinSize(270, 360);
         resultsTextVBox.setId("resultsBox");
 
         //HANDLE ROLL EVENT
@@ -107,6 +105,7 @@ public class StratRoulette extends Application
                 {
                     results = e.getMessage();
                 }
+                resultsText.setFill(Color.WHITE);
                 resultsText.setText(results);
             }
         });
