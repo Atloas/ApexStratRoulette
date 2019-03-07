@@ -3,12 +3,20 @@
     src: url('resources/ttsquarescondensedbold.ttf') format('truetype');
 }
 
-/* 
-    bg color: rgb(232, 218, 199)
-    results bg color: rgb(33, 32, 43)
-*/
+* {
+    -bg-colour: rgb(61, 63, 66);
+    -choice-box-bg-colour: rgb(49, 50, 53);
+    -choice-box-border-colour: rgb(81, 86, 87);
+    -choice-box-mark-colour: rgb(149, 149, 149);
+    -choice-box-hover-bg-colour: rgb(56, 58, 60);
+    -choice-box-hover-border-colour: rgb(118, 126, 125);
+    -orange-accent-colour: rgb(255, 78, 29);
+    -text-colour: rgb(241, 241, 241);
+    -text-cesondary-colour: rgb(196, 196, 196);
+}
+
 .root{
-    -fx-base: rgb(232, 218, 199);
+    -fx-base: -bg-colour;
     -fx-font-family: "TT Squares Condensed Bold";
     -fx-font-size: 14px;
 }
@@ -16,41 +24,48 @@
 .choice-box {
     -fx-min-width: 110px;
     -fx-border-width: 2px;
-    -fx-border-color: white;
-    -fx-background-color: rgb(33, 32, 43);
+    -fx-background-color: -choice-box-bg-colour;
+    -fx-border-color: -choice-box-border-colour;
+    -fx-mark-color: -choice-box-mark-colour;
+}
+
+.choice-box:hover {
+    -fx-background-color: -choice-box-hover-bg-colour;
+    -fx-border-color: -choice-box-hover-border-colour;
+    -fx-mark-color: -orange-accent-colour;
 }
 
 .choice-box > .label {
-    -fx-text-fill: white;
+    -fx-text-fill: -text-colour;
 }
 
 .choice-box .context-menu {
     -fx-min-width: 110px;
-    -fx-background-color: rgb(33, 32, 43);
+    -fx-background-color: -choice-box-bg-colour;
 }
 
 .choice-box .menu-item:focused {
-    -fx-background-color: rgb(63, 62, 73);
+    -fx-background-color: -choice-box-hover-bg-colour;
 }
 
 .choice-box .menu-item > .label {
-    -fx-text-fill: white;
+    -fx-text-fill: -text-colour;
 }
 
 #resultsBox {
-    -fx-background-color: rgb(33, 32, 43);
-    -fx-border-color: white;
+    -fx-border-color: -choice-box-border-colour;
     -fx-border-width: 2px;
     -fx-padding: 10px;
 }
 
 .button {
-    -fx-background-color: rgb(33, 32, 43);
-    -fx-text-fill: white;
+    -fx-background-color: -choice-box-bg-colour;
+    -fx-text-fill: -text-colour;
     -fx-border-width: 2px;
-    -fx-border-color: white;
+    -fx-border-color: -choice-box-border-colour;
 }
 
 .button:hover {
-    -fx-background-color: rgb(63, 62, 73);
+    -fx-background-color: -choice-box-hover-bg-colour;
+    -fx-border-color: -choice-box-hover-border-colour;
 }
