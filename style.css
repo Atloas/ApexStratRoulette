@@ -19,6 +19,7 @@
     -fx-base: -bg-colour;
     -fx-font-family: "TT Squares Condensed Bold";
     -fx-font-size: 14px;
+    -fx-text-fill: -text-colour;
 }
 
 .choice-box {

@@ -9,7 +9,7 @@ public class Roll
     /**
      * Randomly selects a single item from the passed ArrayList of Strings.
      * 
-     * @param arg ArrayList of Strings from which an item will be chosen.
+     * @param arg ArrayList from which an item will be chosen.
      * @return Chosen String.
      */
     public static String rollOne(ArrayList<String> arg)
@@ -23,11 +23,11 @@ public class Roll
      * Randomly selects count items from the passed ArrayList of Strings, avoiding duplicates.
      * <p>
      * The method creates a clone of the passed ArrayList, then removes from it every item selected, so that each item can only be chosen once.
-     * Passing a higher count than the size of the ArrayList will set count to the size of the ArrayList.
+     * Passing a higher count than the size of the ArrayList will return every item in it.
      * 
-     * @param arg ArrayList of Strings from which items will be chosen.
+     * @param arg ArrayList from which items will be chosen.
      * @param count Number of items to choose.
-     * @return String[] containing chosen items.
+     * @return Chosen items.
      */
     public static String[] rollManyUnique(ArrayList<String> arg, int count)
     {
@@ -52,12 +52,10 @@ public class Roll
 
     /**
      * Randomly selects count items from the passed ArrayList of Strings, allows duplicates.
-     * <p>
-     * Passing a higher count than the size of the ArrayList will set count to the size of the ArrayList.
      * 
-     * @param arg ArrayList of Strings from which items will be chosen.
+     * @param arg ArrayList from which items will be chosen.
      * @param count Number of items to choose.
-     * @return String[] containing chosen items.
+     * @return Chosen items.
      */
     public static String[] rollMany(ArrayList<String> arg, int count)
     {
@@ -80,12 +78,12 @@ public class Roll
      * Method creates a TreeMap of items contained in several text files from the pools directory, 
      * then rolls strats according to the passed argument.
      * 
-     * @param args String[], contains flags that tell the method how to roll. The format is {team size, legends, weapons, strats},
+     * @param args contains flags that tell the method how to roll. The format is {team size, legends, weapons, strats},
      *             where each item in the array is a flag related to that respective roll.
      * @return A formatted String, ready to be printed, containing the results of the rolls.
-     *         In case of error or an IOException, the message will be returned in stead.
-     * @throws FileNotFoundException - if one of the required files is missing.
-     * @throws IOException - if an IO exception occurs.
+     *         If no rolls are chosen, returns an error message.
+     * @throws FileNotFoundException If one of the required files is missing.
+     * @throws IOException If an IO exception occurs.
      */
     public static String roll(String[] args) throws FileNotFoundException, IOException
     {
@@ -119,12 +117,13 @@ public class Roll
             }
         }
 
-        int personCount = Integer.parseInt(args[0]);
+        
 
         Boolean flagLegends = !args[1].equals("nolegends");
         Boolean flagWeapons = !args[2].equals("noweapons");
         Boolean flagStrat = !args[3].equals("nostrat");
-        
+        int personCount = flagLegends || flagWeapons ? Integer.parseInt(args[0]) : 0;
+
         String[][] results = new String[personCount + 1][2];
 
         if(!(flagLegends || flagWeapons || flagStrat))
@@ -161,14 +160,17 @@ public class Roll
 
         for(int i = 0; i < results.length - 1; i++)
         {
-            if(results.length != 1)
+            if(results.length != 1 && (flagWeapons || flagLegends) && personCount > 1)
                 resultBuilder.append(i + 1 + ".\n");
-            resultBuilder.append("Legend: " + (flagLegends ? results[i][0] : "Any") + "\n");
-            resultBuilder.append("Weapons: " + (flagWeapons ? results[i][1] : "Any") + "\n");
-            if(i != results.length - 2)
+
+            resultBuilder.append(flagLegends ? "Legend: " + results[i][0] + "\n" : "");
+            resultBuilder.append(flagWeapons ? "Weapons: " + results[i][1] + "\n" : "");
+
+            if(i < results.length - 2)
                 resultBuilder.append("\n");
         }
-        resultBuilder.append("\nStrat: " + (flagStrat ? results[results.length - 1][0] : "Any") + "\n");
+        resultBuilder.append(flagLegends || flagWeapons ? "\n" : "");
+        resultBuilder.append(flagStrat ? "Strat: " + results[results.length - 1][0] + "\n" : "");
         
         return resultBuilder.toString();
     }
