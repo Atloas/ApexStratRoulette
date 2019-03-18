@@ -117,7 +117,6 @@ public class Roll
             }
         }
 
-        
 
         Boolean flagLegends = !args[1].equals("nolegends");
         Boolean flagWeapons = !args[2].equals("noweapons");

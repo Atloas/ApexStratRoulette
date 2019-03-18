@@ -4,4 +4,4 @@ Package hunting
 Ship hunting
 Finishers
 Aggression
-Switch if empty
+Switch on empty

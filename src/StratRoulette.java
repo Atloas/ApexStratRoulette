@@ -30,6 +30,7 @@ public class StratRoulette extends Application
 
         //TEAM SIZE CHOICE
         Text teamSizeTitle = new Text("Team size:");
+        teamSizeTitle.getStyleClass().add("text");
 
         ChoiceBox teamSizeChoiceBox = new ChoiceBox();
         teamSizeChoiceBox.getItems().addAll("1", "2", "3", "4");
@@ -37,6 +38,7 @@ public class StratRoulette extends Application
 
         //LEGENDS CHOICE
         Text legendsTitle = new Text("Legends:");
+        legendsTitle.getStyleClass().add("text");
 
         ChoiceBox legendsChoiceBox = new ChoiceBox();
         legendsChoiceBox.getItems().addAll("Yes", "No");
@@ -44,6 +46,7 @@ public class StratRoulette extends Application
 
         //WEAPONS CHOICE
         Text weaponsTitle = new Text("Weapons:");
+        weaponsTitle.getStyleClass().add("text");
 
         ChoiceBox weaponsChoiceBox = new ChoiceBox();
         weaponsChoiceBox.getItems().addAll("Weapons", "Types", "Ammo", "No");
@@ -51,6 +54,7 @@ public class StratRoulette extends Application
 
         //STRAT RADIOS
         Text stratTitle = new Text("Strat:");
+        stratTitle.getStyleClass().add("text");
 
         ChoiceBox stratsChoiceBox = new ChoiceBox();
         stratsChoiceBox.getItems().addAll("Yes", "No");
@@ -63,10 +67,12 @@ public class StratRoulette extends Application
         rollButtonHBox.setAlignment(Pos.CENTER);
 
         //RESULTS TEXT
-        final Text resultsText = new Text();
-        VBox resultsTextVBox = new VBox(10);
+        Text resultsText = new Text();
+        resultsText.getStyleClass().add("text");
+
+        VBox resultsTextVBox = new VBox(5);
         resultsTextVBox.getChildren().add(resultsText);
-        resultsTextVBox.setMinSize(270, 360);
+        resultsTextVBox.setMinSize(305, 440);
         resultsTextVBox.setId("resultsBox");
 
         //HANDLE ROLL EVENT
@@ -105,7 +111,6 @@ public class StratRoulette extends Application
                 {
                     results = e.getMessage();
                 }
-                resultsText.setFill(Color.WHITE);
                 resultsText.setText(results);
             }
         });

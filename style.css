@@ -12,18 +12,19 @@
     -choice-box-hover-border-colour: rgb(118, 126, 125);
     -orange-accent-colour: rgb(255, 78, 29);
     -text-colour: rgb(241, 241, 241);
-    -text-cesondary-colour: rgb(196, 196, 196);
+    -text-secondary-colour: rgb(196, 196, 196);
 }
 
 .root{
     -fx-base: -bg-colour;
     -fx-font-family: "TT Squares Condensed Bold";
-    -fx-font-size: 14px;
-    -fx-text-fill: -text-colour;
+    -fx-font-size: 16px;
 }
 
+
+
 .choice-box {
-    -fx-min-width: 110px;
+    -fx-min-width: 120px;
     -fx-border-width: 2px;
     -fx-background-color: -choice-box-bg-colour;
     -fx-border-color: -choice-box-border-colour;
@@ -36,10 +37,6 @@
     -fx-mark-color: -orange-accent-colour;
 }
 
-.choice-box > .label {
-    -fx-text-fill: -text-colour;
-}
-
 .choice-box .context-menu {
     -fx-min-width: 110px;
     -fx-background-color: -choice-box-bg-colour;
@@ -49,11 +46,8 @@
     -fx-background-color: -choice-box-hover-bg-colour;
 }
 
-.choice-box .menu-item > .label {
-    -fx-text-fill: -text-colour;
-}
-
 #resultsBox {
+    -fx-background-color: -choice-box-bg-colour;
     -fx-border-color: -choice-box-border-colour;
     -fx-border-width: 2px;
     -fx-padding: 10px;
@@ -61,7 +55,6 @@
 
 .button {
     -fx-background-color: -choice-box-bg-colour;
-    -fx-text-fill: -text-colour;
     -fx-border-width: 2px;
     -fx-border-color: -choice-box-border-colour;
 }
@@ -69,4 +62,8 @@
 .button:hover {
     -fx-background-color: -choice-box-hover-bg-colour;
     -fx-border-color: -choice-box-hover-border-colour;
+}
+
+.text {
+    -fx-fill: -text-colour;
 }
