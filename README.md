@@ -1,43 +1,35 @@
-# README OUTDATED
-
 # ApexStratRoulette
 
-### Description
+## Description
 
-A simple command line program for rolling strats in Apex Legends.
+A simple Java application made for rolling random strats for Apex Legends, which you can use when you feel bored or want to try something new. By "strat roulette" I mean a randomized selection of characters, weapons, and a strategy for your squad to follow. Of course, interpreting and following the rolled strat is entirely up to you. I've included my personal interpretation of the default strats below.
 
-The program requires Java 8 to run.
+It requires a properly set up Java 8. It might work on otehr Java versions, but I didn't test.
 
-### Usage
+### Please, do not use a random strat when playing with random teammates!
 
-To run it, navigate to the folder containing it and type:
+## Usage
 
-`java StratRoulette`
+To launch the program you can use the start.bat file, simply create a shortcut to it and use that. Do not move the file from it's spot. The file executes a `java StratRoulette` command. This will open the program window.
 
-This will roll the Legends, weapons, and a strat for a team of 3. This default behaviour can be modified by addding a list of space separated options to the end of the command. Those options are:
+On the left side of the window you can choose what things should the program roll, then clicking the `Roll!` button will randomize and display the strat on the right.
 
-- `nolegends`
+## Expanding the pools
 
-- `noweapons`
+The program pulls it's data from a set of text files in it's resources folder. Each file contains a simple list of items for the program to choose from when rolling for that particular thing, separated into lines. Those lists can be easily modified to include your own strats, remove guns you really don't like, and so on. Simply add your own items, one per line, or remove existing ones. The program ignores empty lines.
 
-- `nostrat`
+## Default strats
 
-- `solo`
+Below is my personal interpretation of the default strats provided with the program:
 
-- `duo`
+* Explosives - You have to pick up every single grenade you find, this includes dropping other items to make inventory space. This mean you'll be forced to use grenades liberally or risk having your entire inventory filled.
+* Supressive fire - Don't spare the triggers, favour automatic weapons if possible. This one is quite loose.
+* Package hunting - You have to go for every Care Package you can.
+* Ship hunting - You have to go for every Supply Ship.
+* Finishers - You can only execute downed enemies by performing a finisher.
+* Aggression - Play aggressively.
+* Switch on empty - Whenever your magazine runs dry, you have to switch to your other weapon.
 
-- `quad`
 
-- `ammo` - Will roll ammo types in stead of specific weapons.
 
-- `types` - Will roll weapon types in stead of specific weapons.
-
-For example:
-
-`java StratRoulette nostrat ammo`
-
-This will tell a team of 3 which Legends to use, and what ammo types should their guns be, but won't roll a strat.
-
-The pools of items the program pulls from can be easily expanded by modifying corresponding text files.
-
-**Make sure to only use this program if the entire team aggrees upon it, do not do it with randoms.**
+Created by Atloas, TheRealAtloas on Origin.

@@ -103,8 +103,14 @@ public class Roll
                 data.put(fileName, new ArrayList<String>());
                 
                 while((str = reader.readLine()) != null)
+                {
+                    str.trim();
+                    if(str.isEmpty())
+                        continue;
+                        
                     data.get(fileName).add(str);
-                
+                }
+
                 reader.close();
             }
             catch(FileNotFoundException e)
