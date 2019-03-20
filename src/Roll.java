@@ -7,7 +7,7 @@ import java.util.TreeMap;
 public class Roll
 {
     /**
-     * Randomly selects a single item from the passed ArrayList of Strings.
+     * Randomly selects a single item from arg.
      * 
      * @param arg ArrayList from which an item will be chosen.
      * @return Chosen String.
@@ -20,7 +20,7 @@ public class Roll
     }
 
     /**
-     * Randomly selects count items from the passed ArrayList of Strings, avoiding duplicates.
+     * Randomly selects count items from arg, avoiding duplicates.
      * <p>
      * The method creates a clone of the passed ArrayList, then removes from it every item selected, so that each item can only be chosen once.
      * Passing a higher count than the size of the ArrayList will return every item in it.
@@ -35,7 +35,7 @@ public class Roll
         String[] result = new String[count];
         int index;
 
-        //In case we try to roll more times than there are items in the ArrayList
+        //In case we try to roll more times than there are items in arg
         if(count > arg.size())
             count = arg.size();
 
@@ -51,7 +51,7 @@ public class Roll
     }
 
     /**
-     * Randomly selects count items from the passed ArrayList of Strings, allows duplicates.
+     * Randomly selects count items from arg, allows duplicates.
      * 
      * @param arg ArrayList from which items will be chosen.
      * @param count Number of items to choose.
@@ -75,7 +75,7 @@ public class Roll
     /**
      * Rolls strats.
      * <p>
-     * Method creates a TreeMap of items contained in several text files from the pools directory, 
+     * Method reads items contained in several text files from the pools directory, 
      * then rolls strats according to the passed argument.
      * 
      * @param args contains flags that tell the method how to roll. The format is {team size, legends, weapons, strats},
