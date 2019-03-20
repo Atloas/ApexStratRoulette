@@ -30,4 +30,4 @@ Below is my personal interpretation of the default strats provided with the prog
 * Aggression - Play aggressively.
 * Switch on empty - Whenever your magazine runs dry, you have to switch to your other weapon.
 
-__Created by Atloas, TheRealAtloas on Origin.__
+_Created by Atloas, TheRealAtloas on Origin._
