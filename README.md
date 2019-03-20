@@ -4,7 +4,7 @@
 
 A simple Java application made for rolling random strats for Apex Legends, which you can use when you feel bored or want to try something new. By "strat roulette" I mean a randomized selection of characters, weapons, and a strategy for your squad to follow. Of course, interpreting and following the rolled strat is entirely up to you. I've included my personal interpretation of the default strats below.
 
-It requires a properly set up Java 8. It might work on otehr Java versions, but I didn't test.
+It requires a properly set up Java 8. It might work on other Java versions, but I didn't test.
 
 ### Please, do not use a random strat when playing with random teammates!
 
@@ -30,6 +30,4 @@ Below is my personal interpretation of the default strats provided with the prog
 * Aggression - Play aggressively.
 * Switch on empty - Whenever your magazine runs dry, you have to switch to your other weapon.
 
-
-
-Created by Atloas, TheRealAtloas on Origin.
+__Created by Atloas, TheRealAtloas on Origin.__
