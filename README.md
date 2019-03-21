@@ -10,7 +10,7 @@ It requires a properly set up Java 8. It might work on other Java versions, but 
 
 ## Usage
 
-To launch the program you can use the start.bat file, simply create a shortcut to it and use that. Do not move the file from it's spot. The file executes a `java StratRoulette` command. This will open the program window.
+To launch the program you can use the `start.bat` file, simply create a shortcut to it and use that. Do not move the file from it's spot. The file executes a `java StratRoulette` command. This will open the program window.
 
 On the left side of the window you can choose what things should the program roll, then clicking the `Roll!` button will randomize and display the strat on the right.
 
