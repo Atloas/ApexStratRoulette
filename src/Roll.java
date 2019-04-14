@@ -88,7 +88,7 @@ public class Roll
     public static String roll(String[] args) throws FileNotFoundException, IOException
     {
         String dirPath = "resources/";
-        String[] fileNames = {"legends.txt", "weapons.txt", "strats.txt", "weaponTypes.txt", "ammo.txt"};
+        String[] fileNames = {"legends.txt", "weapons.txt", "strats.txt", "weaponTypes.txt", "ammo.txt", "places.txt"};
         Map<String, ArrayList<String>> data = new TreeMap<String, ArrayList<String>>();
         StringBuilder resultBuilder = new StringBuilder();
 
@@ -127,11 +127,13 @@ public class Roll
         Boolean flagLegends = !args[1].equals("nolegends");
         Boolean flagWeapons = !args[2].equals("noweapons");
         Boolean flagStrat = !args[3].equals("nostrat");
+        Boolean flagDrop = !args[4].equals("nodrop");
         int personCount = flagLegends || flagWeapons ? Integer.parseInt(args[0]) : 0;
+        int resultsCount = personCount + (flagStrat ? 1 : 0) + (flagDrop ? 1 : 0);
 
-        String[][] results = new String[personCount + 1][2];
+        String[][] results = new String[resultsCount][2];
 
-        if(!(flagLegends || flagWeapons || flagStrat))
+        if(!(flagLegends || flagWeapons || flagStrat || flagDrop))
         {
             return "ERROR: No rolls selected!";
         }
@@ -160,23 +162,29 @@ public class Roll
 
         if(flagStrat)
         {
-            results[results.length - 1][0] = rollOne(data.get("strats.txt"));
+            results[resultsCount - 1 - (flagDrop ? 1 : 0)][0] = rollOne(data.get("strats.txt"));
         }
 
-        for(int i = 0; i < results.length - 1; i++)
+        if(flagDrop)
         {
-            if(results.length != 1 && (flagWeapons || flagLegends) && personCount > 1)
+            results[resultsCount - 1][0] = rollOne(data.get("places.txt"));
+        }
+
+        for(int i = 0; i < personCount; i++)
+        {
+            if(resultsCount != 1 && (flagWeapons || flagLegends) && personCount > 1)
                 resultBuilder.append(i + 1 + ".\n");
 
             resultBuilder.append(flagLegends ? "Legend: " + results[i][0] + "\n" : "");
             resultBuilder.append(flagWeapons ? "Weapons: " + results[i][1] + "\n" : "");
 
-            if(i < results.length - 2)
+            if(i < personCount - 1)
                 resultBuilder.append("\n");
         }
         resultBuilder.append(flagLegends || flagWeapons ? "\n" : "");
-        resultBuilder.append(flagStrat ? "Strat: " + results[results.length - 1][0] + "\n" : "");
-        
+        resultBuilder.append(flagStrat ? "Strat: " + results[resultsCount - 1 - (flagDrop ? 1 : 0)][0] + "\n" : "");
+        resultBuilder.append(flagDrop ? "Drop: " + results[resultsCount - 1][0] + "\n" : "");
+
         return resultBuilder.toString();
     }
 }

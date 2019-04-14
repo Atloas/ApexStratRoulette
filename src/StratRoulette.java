@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.text.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -52,13 +51,21 @@ public class StratRoulette extends Application
         weaponsChoiceBox.getItems().addAll("Weapons", "Types", "Ammo", "No");
         weaponsChoiceBox.setValue("Weapons");
 
-        //STRAT RADIOS
+        //STRAT CHOICE
         Text stratTitle = new Text("Strat:");
         stratTitle.getStyleClass().add("text");
 
         ChoiceBox stratsChoiceBox = new ChoiceBox();
         stratsChoiceBox.getItems().addAll("Yes", "No");
         stratsChoiceBox.setValue("Yes");
+
+        //DROP CHOICE
+        Text dropTitle = new Text("Drop:");
+        dropTitle.getStyleClass().add("text");
+
+        ChoiceBox dropChoiceBox = new ChoiceBox();
+        dropChoiceBox.getItems().addAll("Yes", "No");
+        dropChoiceBox.setValue("Yes");
 
         //ROLL BUTTON
         Button rollButton = new Button("Roll!");
@@ -72,7 +79,7 @@ public class StratRoulette extends Application
 
         VBox resultsTextVBox = new VBox(5);
         resultsTextVBox.getChildren().add(resultsText);
-        resultsTextVBox.setMinSize(305, 440);
+        resultsTextVBox.setMinSize(305, 465);
         resultsTextVBox.setId("resultsBox");
 
         //HANDLE ROLL EVENT
@@ -82,7 +89,7 @@ public class StratRoulette extends Application
             public void handle(ActionEvent event)
             {
                 String results;
-                String[] args = {"3", "legends", "weapons", "strat"};
+                String[] args = {"3", "legends", "weapons", "strat", "drop"};
                 args[0] = (String)teamSizeChoiceBox.getValue();
                 args[1] = legendsChoiceBox.getValue().equals("Yes") ? "legends" : "nolegends";
                 
@@ -98,6 +105,7 @@ public class StratRoulette extends Application
                 args[2] = arg2;
 
                 args[3] = stratsChoiceBox.getValue().equals("Yes") ? "strat" : "nostrat";
+                args[4] = dropChoiceBox.getValue().equals("Yes") ? "drop" : "nodrop";
 
                 try
                 {
@@ -124,8 +132,10 @@ public class StratRoulette extends Application
         grid.add(weaponsChoiceBox, 1, 3);
         grid.add(stratTitle, 0, 4);
         grid.add(stratsChoiceBox, 1, 4);
-        grid.add(rollButtonHBox, 0, 5, 2, 1);
-        grid.add(resultsTextVBox, 2, 0, 1, 7);
+        grid.add(dropTitle, 0, 5);
+        grid.add(dropChoiceBox, 1, 5);
+        grid.add(rollButtonHBox, 0, 6, 2, 1);
+        grid.add(resultsTextVBox, 2, 0, 1, 8);
 
         Scene scene = new Scene(grid);
         scene.getStylesheets().add("style.css");
