@@ -90,7 +90,7 @@ public class Roll
         String dirPath = "resources/";
         String[] fileNames = {"legends.txt", "weapons.txt", "strats.txt", "weaponTypes.txt", "ammo.txt", "places.txt"};
         Map<String, ArrayList<String>> data = new TreeMap<String, ArrayList<String>>();
-        StringBuilder resultBuilder = new StringBuilder();
+        StringBuffer resultBuffer = new StringBuffer();
 
         for(String fileName:fileNames)
         {
@@ -173,18 +173,18 @@ public class Roll
         for(int i = 0; i < personCount; i++)
         {
             if(resultsCount != 1 && (flagWeapons || flagLegends) && personCount > 1)
-                resultBuilder.append(i + 1 + ".\n");
+                resultBuffer.append(i + 1 + ".\n");
 
-            resultBuilder.append(flagLegends ? "Legend: " + results[i][0] + "\n" : "");
-            resultBuilder.append(flagWeapons ? "Weapons: " + results[i][1] + "\n" : "");
+            resultBuffer.append(flagLegends ? "Legend: " + results[i][0] + "\n" : "");
+            resultBuffer.append(flagWeapons ? "Weapons: " + results[i][1] + "\n" : "");
 
             if(i < personCount - 1)
-                resultBuilder.append("\n");
+                resultBuffer.append("\n");
         }
-        resultBuilder.append(flagLegends || flagWeapons ? "\n" : "");
-        resultBuilder.append(flagStrat ? "Strat: " + results[resultsCount - 1 - (flagDrop ? 1 : 0)][0] + "\n" : "");
-        resultBuilder.append(flagDrop ? "Drop: " + results[resultsCount - 1][0] + "\n" : "");
+        resultBuffer.append(flagLegends || flagWeapons ? "\n" : "");
+        resultBuffer.append(flagStrat ? "Strat: " + results[resultsCount - 1 - (flagDrop ? 1 : 0)][0] + "\n" : "");
+        resultBuffer.append(flagDrop ? "Drop: " + results[resultsCount - 1][0] + "\n" : "");
 
-        return resultBuilder.toString();
+        return resultBuffer.toString();
     }
 }
